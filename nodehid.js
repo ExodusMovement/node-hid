@@ -1,4 +1,5 @@
-
+var fs = require('fs');
+var path = require('path');
 var os = require('os')
 
 var EventEmitter = require("events").EventEmitter,
@@ -13,7 +14,14 @@ function setDriverType(type) {
 var binding = null;
 function loadBinding() {
     if( !binding ) {
-        binding = require('bindings')('HID.node');
+        var bindingsName = `HID-${process.platform}-v${process.versions.modules}.node`;
+        var bindingsFile = path.resolve(path.join(__dirname, 'out', 'Release', bindingsName))
+        if (!fs.existsSync(bindingsFile)) {
+          throw new Error(
+            `HID bindings not available for ${process.platform} node ABI version ${process.versions.modules}`
+          );
+        }
+        binding = require('bindings')(bindingsName);
     }
 
     // disabled until prebuild gets multi-target support, see node-hid#242
