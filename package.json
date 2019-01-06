@@ -1,7 +1,7 @@
 {
   "name": "@exodus/node-hid",
   "description": "USB HID device access library",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "author": "Hans Hübner <hans.huebner@gmail.com> (https://github.com/hanshuebner)",
   "bugs": "https://github.com/ExodusMovement/node-hid/issues",
   "homepage": "https://github.com/ExodusMovement/node-hid#readme",
